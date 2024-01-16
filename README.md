@@ -6,8 +6,6 @@ Managing car reservations efficiently is crucial for organizations or individual
 ## System Overview
 The Car Reservation System is a PHP-based web application that utilizes a MySQL database for data storage. It comprises three main components: the database interaction layer, the user authentication module, and the dashboard for users to interact with the reservation system.
 
-![System Architecture](<insert your architecture image link here>)
-
 ## Components
 
 ### Database Interaction
