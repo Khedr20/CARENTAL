@@ -1,0 +1,40 @@
+-- Create the 'carental' database
+CREATE DATABASE IF NOT EXISTS carental;
+
+-- Switch to the 'carental' database
+USE carental;
+
+-- Create the 'users' table
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+);
+
+-- Create the 'cars' table with new columns 'duration' and 'total_price'
+CREATE TABLE IF NOT EXISTS cars (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    make VARCHAR(255) NOT NULL,
+    model VARCHAR(255) NOT NULL,
+    reserved TINYINT(1) DEFAULT 0,
+    reserved_by VARCHAR(255),
+    reservation_date DATE,
+    reservation_time TIME,
+    price_per_hour DECIMAL(10, 2) DEFAULT 0.00,
+    duration INT,
+    total_price DECIMAL(10, 2),
+    CONSTRAINT fk_user FOREIGN KEY (reserved_by) REFERENCES users(username)
+);
+
+-- Insert 10 different cars and update their prices per hour in RM
+INSERT INTO cars (make, model, price_per_hour) VALUES
+('Toyota', 'Camry', 50.00),
+('Honda', 'Accord', 60.00),
+('Ford', 'Mustang', 12.00),
+('Chevrolet', 'Cruze', 14.00),
+('Nissan', 'Altima', 85.00),
+('BMW', '3 Series', 13.00),
+('Mercedes-Benz', 'C-Class', 15.00),
+('Audi', 'A4', 40.00),
+('Hyundai', 'Elantra', 65.00),
+('Kia', 'Optima', 35.00);
